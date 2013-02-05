@@ -269,3 +269,7 @@ obj-$(CONFIG_VIRTIO_NET) += virtio_net.o
 obj-$(CONFIG_SFC) += sfc/
 
 obj-$(CONFIG_WIMAX) += wimax/
+
+ifeq ($(CONFIG_ARCH_GOLDFISH),y)
+	obj-$(CONFIG_RFKILL) += goldfish_rfkill.o
+endif

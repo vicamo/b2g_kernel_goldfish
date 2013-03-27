@@ -907,4 +907,8 @@ config SCx200_ACB
 	  This support is also available as a module.  If so, the module
 	  will be called scx200_acb.
 
+config CONFIG_I2C_GOLDFISH
+	bool "Goldfish I2C support"
+	depends on ARCH_GOLDFISH
+
 endmenu

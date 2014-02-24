@@ -74,6 +74,9 @@ int copy_siginfo_to_user32(compat_siginfo_t __user *to, siginfo_t *from)
 		switch (from->si_code >> 16) {
 		case __SI_FAULT >> 16:
 			break;
+		case __SI_SYS >> 16:
+			put_user_ex(from->si_syscall, &to->si_syscall);
+			put_user_ex(from->si_arch, &to->si_arch);
 		case __SI_CHLD >> 16:
 			err |= __put_user(from->si_utime, &to->si_utime);
 			err |= __put_user(from->si_stime, &to->si_stime);

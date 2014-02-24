@@ -1175,6 +1175,10 @@ struct task_struct {
 	/* ??? */
 	unsigned int personality;
 	unsigned did_exec:1;
+
+	/* task may not gain privileges */
+	unsigned no_new_privs:1;
+
 	pid_t pid;
 	pid_t tgid;
 
@@ -1285,7 +1289,7 @@ struct task_struct {
 	uid_t loginuid;
 	unsigned int sessionid;
 #endif
-	seccomp_t seccomp;
+	struct seccomp seccomp;
 
 /* Thread group tracking */
    	u32 parent_exec_id;

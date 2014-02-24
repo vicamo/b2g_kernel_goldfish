@@ -170,6 +170,7 @@ read the file /proc/PID/status:
   CapInh: 00000000fffffeff 
   CapPrm: 0000000000000000 
   CapEff: 0000000000000000 
+  Seccomp:        0
 
 
 This shows you nearly the same information you would get if you viewed it with

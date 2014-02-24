@@ -10,6 +10,7 @@
 
 #ifdef __KERNEL__
 #include <asm/atomic.h>
+#include <linux/compat.h>
 #endif
 
 /*
@@ -139,6 +140,8 @@ enum {
 	BPF_S_JMP_JGT_X,
 	BPF_S_JMP_JSET_K,
 	BPF_S_JMP_JSET_X,
+	/* Ancillary data */
+	BPF_S_ANC_SECCOMP_LD_W,
 };
 
 #ifndef BPF_MAXINSNS
@@ -176,6 +179,14 @@ enum {
 #define SKF_LL_OFF    (-0x200000)
 
 #ifdef __KERNEL__
+
+#ifdef CONFIG_COMPAT
+struct compat_sock_fprog {
+	u16		len;
+	compat_uptr_t	filter;		/* struct sock_filter */
+};
+#endif
+
 struct sk_filter
 {
 	atomic_t		refcnt;

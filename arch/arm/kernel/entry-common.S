@@ -261,6 +261,12 @@ ENTRY(vector_swi)
 #endif
 
 	stmdb	sp!, {r4, r5}			@ push fifth and sixth args
+
+#ifdef CONFIG_SECCOMP
+	tst	ip, #_TIF_SECCOMP
+	bne	__sys_trace
+#endif
+
 	tst	ip, #_TIF_SYSCALL_TRACE		@ are we tracing syscalls?
 	bne	__sys_trace
 
